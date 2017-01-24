@@ -9,25 +9,27 @@
 import UIKit
 import GoogleMaps
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GMSMapViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6)
+        let camera = GMSCameraPosition.camera(withLatitude: 35.895, longitude: -77.036, zoom: 4)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         
         mapView.isMyLocationEnabled = true
+        mapView.mapType = kGMSTypeTerrain
+        mapView.delegate = self
         
         self.view = mapView
         
         let marker = GMSMarker()
         
-        marker.position = CLLocationCoordinate2DMake(-33.86, 151.20)
+        marker.position = CLLocationCoordinate2DMake(35.895, -77.036)
         
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
+        marker.title = "Estados Unidos"
+        marker.snippet = "Washington D. C."
         marker.map = mapView
         
     }
@@ -36,7 +38,18 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        print(marker.title!, marker.snippet!)
+        
+        let yourViewController = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
+        
+        let navController = UINavigationController(rootViewController: yourViewController)
+        
+        self.present(navController, animated: true, completion: nil)
+        
+        return true
+    }
 
 }
 
