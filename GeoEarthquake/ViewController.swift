@@ -40,13 +40,8 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print(marker.title!, marker.snippet!)
-        
-        let yourViewController = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailViewController
-        
-        let navController = UINavigationController(rootViewController: yourViewController)
-        
-        self.present(navController, animated: true, completion: nil)
+        //Navegar a la vista de detalle
+        self.performSegue(withIdentifier: "show_detail", sender: marker)
         
         return true
     }
