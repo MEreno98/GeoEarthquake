@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleMaps
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, GMSMapViewDelegate {
 
@@ -15,7 +17,11 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let camera = GMSCameraPosition.camera(withLatitude: 35.895, longitude: -77.036, zoom: 4)
+
+        relizarBusqueda()
+        
+        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6)
+
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         
         mapView.isMyLocationEnabled = true
@@ -44,6 +50,23 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         self.performSegue(withIdentifier: "show_detail", sender: marker)
         
         return true
+    }
+    func relizarBusqueda(){
+        Alamofire.request("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson").responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                
+            self.generar_marcas(informacion: json)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    func generar_marcas(informacion info:JSON ){
+       
     }
 
 }
