@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import Alamofire
 import SwiftyJSON
+import SystemConfiguration
 
 class ViewController: UIViewController, GMSMapViewDelegate {
 
@@ -35,10 +36,16 @@ class ViewController: UIViewController, GMSMapViewDelegate {
             self.view = mapa
         }
         
-        //Procedemos a buscar los terremetos que han ocurrido.
-        relizarBusqueda()
+        //Comprobar si tenemos conexión a internet
+        if(connectedToNetwork()){
+            //Procedemos a buscar los terremetos que han ocurrido.
+            relizarBusqueda()
+        }else{
+            print("Sin conexión")
+        }
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -50,6 +57,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         
         return true
     }
+    
     func relizarBusqueda(){
         Alamofire.request("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson").responseJSON { response in
             switch response.result {
@@ -64,6 +72,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
             }
         }
     }
+    
     func generar_marcas(informacion info:JSON ){
        
         for terremoto in info["features"]{
@@ -91,6 +100,30 @@ class ViewController: UIViewController, GMSMapViewDelegate {
             //Le indicamos al punto que su mapa es el que nosotros queremos.
             marker.map = mapView
         }
+    }
+    
+    func connectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
+        }) else {
+            return false
+        }
+        
+        var flags: SCNetworkReachabilityFlags = []
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+        
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+        
+        return (isReachable && !needsConnection)
     }
 
 }
