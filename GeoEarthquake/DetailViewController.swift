@@ -9,6 +9,8 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    var feature : String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
