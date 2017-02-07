@@ -45,6 +45,14 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         
         return true
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "show_detail"){
+            //Obtener el ViewController del Detalle
+            let destino = segue.destination as! DetailViewController
+            
+        }
+    }
 
 }
 

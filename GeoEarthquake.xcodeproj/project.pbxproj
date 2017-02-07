@@ -14,6 +14,7 @@
 		974B9A521E2E9EBA00A01B26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974B9A501E2E9EBA00A01B26 /* Main.storyboard */; };
 		974B9A541E2E9EBA00A01B26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 974B9A531E2E9EBA00A01B26 /* Assets.xcassets */; };
 		974B9A571E2E9EBA00A01B26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 974B9A551E2E9EBA00A01B26 /* LaunchScreen.storyboard */; };
+		975DCE961E4A560E00793EA5 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975DCE951E4A560E00793EA5 /* Feature.swift */; };
 		97908D4D1E37DD2C00D9E6A7 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97908D4C1E37DD2C00D9E6A7 /* OptionsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		974B9A531E2E9EBA00A01B26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		974B9A561E2E9EBA00A01B26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		974B9A581E2E9EBA00A01B26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		975DCE951E4A560E00793EA5 /* Feature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		97908D4C1E37DD2C00D9E6A7 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		AD5EE990341B784996FEC84D /* Pods-GeoEarthquake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeoEarthquake.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeoEarthquake/Pods-GeoEarthquake.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 				974B9A581E2E9EBA00A01B26 /* Info.plist */,
 				97908D4C1E37DD2C00D9E6A7 /* OptionsViewController.swift */,
 				971A62331E37EE83008CBFB5 /* DetailViewController.swift */,
+				975DCE951E4A560E00793EA5 /* Feature.swift */,
 			);
 			path = GeoEarthquake;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			files = (
 				97908D4D1E37DD2C00D9E6A7 /* OptionsViewController.swift in Sources */,
 				974B9A4F1E2E9EBA00A01B26 /* ViewController.swift in Sources */,
+				975DCE961E4A560E00793EA5 /* Feature.swift in Sources */,
 				974B9A4D1E2E9EBA00A01B26 /* AppDelegate.swift in Sources */,
 				971A62341E37EE83008CBFB5 /* DetailViewController.swift in Sources */,
 			);
