@@ -11,6 +11,15 @@ import Foundation
 struct Feature {
     var mag: Decimal
     var place: String
-    var time: 
+    var time: NSDate
+    var alert: String
+    var tsunami: Int
+    var sig: Int
+    var nst: Int
+    var dmin: Int
+    var type: String
+    var longitude: Decimal
+    var latitude: Decimal
+    var depth : Decimal
     
 }
