@@ -20,14 +20,13 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //Generamos el punto desde donde queremos empezar a visualizar el mapa.
+        //Generamos el punto desde donde queremos empezar a visualizar el mapa. (Mostramos America siempre y cuando no haya un punto.) 
         let camera = GMSCameraPosition.camera(withLatitude: 35.895, longitude: -77.036, zoom: 4)
         
         //Generamos el mapa con la camara indicaca.
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
 
         //Propiedades del mapa.
-        
         if let mapa = mapView{
             mapa.isMyLocationEnabled = true
             mapa.mapType = kGMSTypeTerrain
@@ -38,15 +37,6 @@ class ViewController: UIViewController, GMSMapViewDelegate {
         
         //Procedemos a buscar los terremetos que han ocurrido.
         relizarBusqueda()
-        
-        //let marker = GMSMarker()
-        
-        //marker.position = CLLocationCoordinate2DMake(35.895, -77.036)
-        
-        //marker.title = "Estados Unidos"
-        //marker.snippet = "Washington D. C."
-        //marker.map = mapView
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,8 +66,30 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     }
     func generar_marcas(informacion info:JSON ){
        
-        for terremeto in info{
-            print(terremeto)
+        for terremoto in info["features"]{
+            
+            //Guardamos los parametros tanto de la longitud como la latitud de los puntos.
+            let latitude = terremoto.1["geometry"]["coordinates"][1].doubleValue
+            let longitude = terremoto.1["geometry"]["coordinates"][0].doubleValue
+            
+            //terremoto.0 almacena el indice de nuestro array.
+            if (Int(terremoto.0) == 0){
+                let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 4)
+                
+                if let mapa = mapView{
+                    mapa.camera=camera
+                }
+            }
+            
+            //Generamos un punto.
+            let marker = GMSMarker()
+            
+            //Indicamos al punto en que posición lo queremos y con que título.
+            marker.position = CLLocationCoordinate2DMake(latitude ,longitude)
+            marker.title = terremoto.1["id"].stringValue
+            
+            //Le indicamos al punto que su mapa es el que nosotros queremos.
+            marker.map = mapView
         }
     }
 
