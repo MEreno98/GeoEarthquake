@@ -16,6 +16,8 @@ class ViewController: UIViewController, GMSMapViewDelegate {
 
     
     var mapView : GMSMapView?
+    var terremotos : [String:Feature] = [:]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,9 +101,36 @@ class ViewController: UIViewController, GMSMapViewDelegate {
             
             //Le indicamos al punto que su mapa es el que nosotros queremos.
             marker.map = mapView
+            
+            //Después de generar la marca, guardo la información en una estructura.
+            var terre = Feature()
+            
+            terre.mag = terremoto.1["properties"]["mag"].doubleValue
+            terre.place = terremoto.1["properties"]["place"].stringValue
+            //Generar una fecha.
+            let fecha = Date.init(timeIntervalSince1970: terremoto.1["properties"]["time"].doubleValue/1000)
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .medium
+            
+            terre.time = dateFormatter.string(from: fecha)
+            terre.alert = terremoto.1["properties"]["alert"].stringValue
+            terre.tsunami = terremoto.1["properties"]["tsunami"].intValue
+            terre.sig = terremoto.1["properties"]["sig"].intValue
+            terre.nst = terremoto.1["properties"]["nst"].intValue
+            terre.dmin = terremoto.1["properties"]["dmin"].intValue
+            terre.type = terremoto.1["properties"]["type"].stringValue
+            terre.longitude = terremoto.1["geometry"]["coordinates"][0].doubleValue
+            terre.latitude = terremoto.1["geometry"]["coordinates"][1].doubleValue
+            terre.depth = terremoto.1["geometry"]["coordinates"][2].doubleValue
+            
+            terremotos[terremoto.1["id"].stringValue] = terre
         }
+        
+        
+        print(terremotos)
     }
-    
     func connectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)

@@ -132,7 +132,7 @@
 				TargetAttributes = {
 					974B9A481E2E9EBA00A01B26 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GLU2Z7NT53;
+						DevelopmentTeam = XBJV9U7468;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -347,7 +347,8 @@
 			baseConfigurationReference = 29E565A9BF07A1992AFE95CC /* Pods-GeoEarthquake.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GLU2Z7NT53;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = XBJV9U7468;
 				INFOPLIST_FILE = GeoEarthquake/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.8FPROGMM11.GeoEarthquake;
@@ -361,7 +362,8 @@
 			baseConfigurationReference = AD5EE990341B784996FEC84D /* Pods-GeoEarthquake.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GLU2Z7NT53;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = XBJV9U7468;
 				INFOPLIST_FILE = GeoEarthquake/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.8FPROGMM11.GeoEarthquake;
