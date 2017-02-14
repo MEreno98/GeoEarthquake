@@ -10,11 +10,17 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var feature : String!
+    var feature : Feature?
+    @IBOutlet weak var l_place: UILabel!
+    @IBOutlet weak var tf_hora: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        if let terremoto = feature{
+            l_place.text = terremoto.place
+            tf_hora.value(forKey: terremoto.time)
+        }
     }
 
     override func didReceiveMemoryWarning() {

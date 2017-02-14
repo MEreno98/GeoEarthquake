@@ -160,6 +160,14 @@ class ViewController: UIViewController, GMSMapViewDelegate {
             //Obtener el ViewController del Detalle
             let destino = segue.destination as! DetailViewController
             
+            if let marker = sender {
+                //print((marker as! GMSMarker).title!)
+                if let l_terremostos = terremotos{
+                    destino.feature = l_terremostos[(marker as! GMSMarker).title!]
+                }
+            }
+            
+            
         }
     }
 
