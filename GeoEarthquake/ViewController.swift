@@ -61,7 +61,7 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     }
     
     func relizarBusqueda(){
-        Alamofire.request("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson").responseJSON { response in
+        Alamofire.request("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson").responseJSON { response in
             switch response.result {
             case .success(let value):
                 //La petición me devuelve un JSON, el cual guardo para su posterior procesamiento.
@@ -162,12 +162,8 @@ class ViewController: UIViewController, GMSMapViewDelegate {
             
             if let marker = sender {
                 //print((marker as! GMSMarker).title!)
-                if let l_terremostos = terremotos{
-                    destino.feature = l_terremostos[(marker as! GMSMarker).title!]
-                }
+                    destino.feature = terremotos[(marker as! GMSMarker).title!]
             }
-            
-            
         }
     }
 
